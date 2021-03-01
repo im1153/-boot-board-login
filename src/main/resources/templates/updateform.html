@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>게시판</title>
+
+</head>
+
+
+<body>
+<form th:action="@{/edit}" th:object="${board}" method="post">
+    <!--th:object="${board}"로 할시, form의 데이터가 th:object에 설정해준 객체로 받아진다. -->
+    <input type="hidden" name="id" th:value="${board.id}"/>
+
+    제목 : <input type="text" name="title" th:value="${board.title}"> <br>
+    작성자 : <input type="text" name="writer" th:value="${board.writer}"> <br>
+    <textarea name="content" th:text="${board.content}"></textarea><br>
+
+    <input type="submit" value="수정">
+</form>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>게시판</title>
+</head>
+
+<body>
+<form  th:action="@{/write}" th:object="${board}" method="post">
+    <!--th:object="${board}"로 할시, form의 데이터가 th:object에 설정해준 객체로 받아진다. -->
+    제목 :  <input type="text" id="title" name="title" th:field="*{title}"
+                 value="홍"/>
+    <br>
+    작성자 :  <input type="text"  id="principal.user.username" name="principal.user.username"
+                  th:field="*{writer}" value="principal.user.username"
+                />
+    <br>
+    내용 :  <input type="text" id="content" name="content" th:field="*{content}"
+                 value="홍"/>
+    <br>
+    <input type="submit" value="등록">
+</form>
+</body>
+</html>

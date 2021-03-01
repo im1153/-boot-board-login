@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>게시판</title>
+
+</head>
+
+<body>
+
+<p>
+    <span sec:authentication="principal.user.username">duke</span>님이 로그인 상태
+
+    <!-- : 인증된 사용자 정보에 접근 Principal 속성으로 UserDetails 객체에 접근함. 이것 참조시 로그인된 사용자를 알수있음. -->
+    <a th:href="@{/logout}" class="btn btn-default btn-xs">로그 아옷</a>
+</p>
+
+<!-- header를 작성하지 않아도 header가 이 위치에 구성된다. -->
+
+<div class="container" layout:fragment="content">
+
+    <div class="page-header">
+        <h1>게시글 목록</h1>
+    </div>
+    <div class="pull-right" style="width: 100px; margin: 10px 0;">
+        <a href="/writeform" class="btn btn-primary btn-block">등록</a>
+    </div>
+    <br /> <br /> <br />
+
+    <div class="container-fluid">
+        <div class="row">
+            <table class="table table-hover">
+                <thead>
+                <tr class="warning">
+                    <th class="col-sm-1">No</th>
+                    <th class="col-sm-5">제목</th>
+                    <th class="col-sm-3">작성자</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="board : ${board}">
+                    <td th:text="${board.id}"></td>
+                    <td><a th:href="'/detail/'+${board.id}" th:text="${board.title}"></a></td>
+                    <td th:text="${board.writer}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>게시판</title>
+
+</head>
+
+<body>
+<!-- header를 작성하지 않아도 header가 이 위치에 구성된다. -->
+
+<div class="container" layout:fragment="content">
+
+    <div class="page-header">
+        <h1>게시글 상세 보기</h1>
+    </div>
+    <table class="table table-striped table-bordered table-condensed">
+        <tr>
+            <th>ID</th>
+            <th>제목</th>
+            <th>글쓴이</th>
+            <th>내용</th>
+        </tr>
+
+        <tr th:each="board : ${board}">
+            <td th:text="${board.id}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.writer}"></td>
+            <td th:text="${board.content}"></td>
+        </tr>
+    </table>
+
+    <!-- 삭제, 수정
+    https://velog.io/@max9106/Spring-Boot-JPA-MySQL-%EA%B2%8C%EC%8B%9C%EA%B8%80-%EC%A1%B0%ED%9A%8C -->
+
+    <!-- 수정 폼으로 이동 -->
+    <a th:href="@{'/detail/edit/'+${board.id}}">
+        <button>수정</button>
+    </a>
+    <!-- 삭제 -->
+    <form id="delete-form" th:action="@{'/delete/'+${board.id}}" method="post">
+        <button id="delete-btn">삭제</button>
+    </form>
+</div>
+</body>
+</html>
